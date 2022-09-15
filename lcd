@@ -1,0 +1,19 @@
+
+########################
+## [Function lcd] #
+##   - ENTER AND LIST DIRECTORY
+lcd() {
+  if [[ $1 == '-h' ]]; then
+    echo -e " "
+    echo -e " ${C_YW}This is the help info for the function:${C_NC} ${C_CY} lcd ${C_NC}"
+    echo -e " ${C_YW}lcd is a function that allows a user to 'cd' into a directory and 'list' the contents in a single command.${C_NC}"
+    echo -e " ${C_YW}For example: ${C_NC}"
+    echo -e " ${C_YW}lcd .. ${C_NC}"
+    echo -e " ${C_YW}lcd ~/rtb ${C_NC}"
+  elif [[ -z $1 ]]; then
+    dir -latrh --color=always;
+  else
+    builtin cd -- "$@" && { [ "$PS1" = "" ] || dir -latrh --color=always; };
+  fi
+}      ##### FUNCTION END : lcd
+
